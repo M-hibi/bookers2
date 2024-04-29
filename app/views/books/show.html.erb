@@ -1,18 +1,18 @@
 <%= render 'users/side', user: @user %>
 
-    <div class="col-md-8 offset-md-1">
-      <h2>Book detail</h2>
-          <%= image_tag @user.get_profile_image(100,100) %>
-          <%= link_to user_path, class: 'nav-link' %>
-          <%= @book.title %>
-          <%= @book.body %>
-          <%= link_to"edit", edit_book_path, class: 'btn btn-success' %>
-          <%= link_to "destroy", book_path, class: 'btn btn-danger', method: :delete %>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<div class="col-md-8 offset-md-1">
+  <h2>Book detail</h2>
+  <table class="table table-hover table-inverse">
+    <tr>
+      <th><%=  image_tag @book.user.get_profile_image(100,100) %><br>
+      <%= link_to @book.user.name, user_path(@book.user_id) %></th>
+      <th><%= link_to @book.title, book_path(@book.id) %></th>
+      <th><%= @book.body %></th>
+       <% if @book.user == current_user %>
+        <th><%= link_to"edit", edit_book_path, class: 'btn btn-success' %></th>
+        <th><%= link_to "destroy", book_path, class: 'btn btn-danger', method: :delete, data: {confirm: "本当に消しますか？"} %></th>
+       <% end %>
+    </tr>
+  </table>
 </div>
-</main>
 
