@@ -1,3 +1,5 @@
+
+
   <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
@@ -16,8 +18,8 @@
 </tbody></table>
 　
 <div class="row">
-  <%= link_to edit_user_path(current_user.id), class: "btn btn-secondary" do%>
-  <i class="fa fa-user-gear"></i>
+  <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block" do%>
+  <i class="fa-solid fa-user-gear"></i>
   <% end %>
 </div>
 
@@ -53,7 +55,8 @@
     <% @books.each do |book| %>
     <div>
       <tr>
-        <th><%= image_tag @user.get_profile_image(100,100) %></th>
+        <th><%= link_to user_path(book.user_id) do %>
+        <%= image_tag @user.get_profile_image(100,100) %><% end %></th>
         <th><%= link_to book.title, book_path(book.id) %></th>
         <th><%= book.body %></th>
       </tr>
